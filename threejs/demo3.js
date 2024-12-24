@@ -70,7 +70,7 @@ const loader = new GLTFLoader();
 let mixer;
 let model3D; // Store the loaded model
 // Load the initial model
-loadModel('./model/2026_bugatti_tourbillon.glb');
+loadModel('./model/parking_lot.glb');
 
 function loadModel(url) {
   loader.load(
