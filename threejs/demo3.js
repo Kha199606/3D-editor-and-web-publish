@@ -70,7 +70,7 @@ const loader = new GLTFLoader();
 let mixer;
 let model3D; // Store the loaded model
 // Load the initial model
-loadModel('./model/Blender_OCR Port Gate_Animate.glb');
+loadModel('./model/2026_bugatti_tourbillon.glb');
 
 function loadModel(url) {
   loader.load(
