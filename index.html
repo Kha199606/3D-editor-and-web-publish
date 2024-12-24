@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>&lt;model-viewer&gt; template</title>
+    <meta charset="utf-8">
+    <meta name="description" content="&lt;model-viewer&gt; template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link type="text/css" href="./styles.css" rel="stylesheet"/>
+    <style>
+      /* Styles for the navigation bar */
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #333;
+        padding: 10px 20px;
+      }
+      .navbar a {
+        color: white;
+        text-decoration: none;
+        padding: 8px 15px;
+      }
+      .navbar a:hover {
+        background-color: #575757;
+        border-radius: 4px;
+      }
+      .navbar .logo {
+        font-size: 20px;
+        font-weight: bold;
+      }
+	  
+    </style>
+  </head>
+  <body>
+    <!-- Header with navigation bar -->
+    <header>
+      <nav class="navbar">
+        <div class="logo">3D Viewer</div>
+        <div class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="demo1.html">Demo1</a>
+          <a href="demo2.html">Demo2</a>
+          <a href="demo3.html">Demo3</a>
+        </div>
+      </nav>
+    </header>
+
+    <!-- <model-viewer> HTML element -->
+    <model-viewer src="./model/Blender_OCR Port Gate_Animate.glb" 
+		with slot="progress-bar",
+      
+      shadow-intensity="1" 
+      environment-image="./model/music_hall_01_4k.hdr" 
+	  exposure="1"
+      camera-orbit="-18.91deg 86.18deg 57m" 
+      field-of-view="15deg" 
+	  max-field-of-view="15deg"
+	  interpolation-decay="200"
+	
+      autoplay>
+      <div class="progress-bar hide" slot="progress-bar">
+          <div class="update-bar"></div>
+      </div>
+	  <button class="view-button" slot="hotspot-0"
+	  data-position="0m 0m 10m"
+	  data-normal="-0.5829775m 0.2863482m -0.7603565m"
+	  data-orbit="231.9deg 57.29deg 1m"
+	  data-target="0m 0m 10m">
+		Loop A 
+		</button>     
+
+		<button class="view-button" slot="hotspot-1"
+	  data-position="0m 0m -2m"
+	  data-normal="-0.5829775m 0.2863482m -0.7603565m"
+	  data-orbit="231.9deg 57.29deg 1m"
+	  data-target="0m 0m -2m">
+		Loop B
+		</button>   		
+    </model-viewer>  
+	
+	<script type="module">
+  const modelViewer2 = document.querySelector("#hotspot-camera-view-demo");
+  const annotationClicked = (annotation) => {
+    let dataset = annotation.dataset;
+    modelViewer2.cameraTarget = dataset.target;
+    modelViewer2.cameraOrbit = dataset.orbit;
+    modelViewer2.fieldOfView = '10deg';
+  }
+
+  modelViewer2.querySelectorAll('button').forEach((hotspot) => {
+    hotspot.addEventListener('click', () => annotationClicked(hotspot));
+  });
+	</script>
+
+    <script src="script.js"></script>
+    <!-- Loads <model-viewer> for browsers: -->
+    <script type="module" src="./model-viewer.min.js"></script>
+  </body>
+</html>
